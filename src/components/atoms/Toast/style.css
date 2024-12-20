@@ -1,0 +1,60 @@
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation:
+    slide-in 0.3s ease-out forwards,
+    fade-out 0.3s ease-out forwards 2.7s;
+}
+.toast--success {
+  background-color: #d4edda; /* Light green background */
+  border: 1px solid #155724; /* Dark green border */
+  color: #155724; /* Dark green text */
+}
+
+/* Error Toast */
+.toast--error {
+  background-color: #f8d7da; /* Light pink background */
+  border: 1px solid #721c24; /* Dark red border */
+  color: #721c24; /* Dark red text */
+}
+
+/* Info Toast */
+.toast--info {
+  background-color: #d1ecf1; /* Light blue background */
+  border: 1px solid #0c5460; /* Dark blue border */
+  color: #0c5460; /* Dark blue text */
+}
+
+/* Warning Toast */
+.toast--warning {
+  background-color: #fff3cd; /* Light orange background */
+  border: 1px solid #856404; /* Dark orange border */
+  color: #856404; /* Dark orange text */
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

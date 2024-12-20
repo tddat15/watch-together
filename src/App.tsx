@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import VideoPage from './pages/VideoPage';
+import Toast from './components/atoms/Toast';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface ToastData {
+  message: string;
+  type: 'success' | 'error' | 'info';
 }
+
+const App: React.FC = () => {
+  const [toastData, setToastData] = useState<ToastData | null>(null);
+
+  const showToast = (
+    message: string,
+    type: 'success' | 'error' | 'info' = 'info',
+  ) => {
+    setToastData({ message, type });
+  };
+
+  const handleCloseToast = () => setToastData(null);
+
+  return (
+    <>
+      {' '}
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/register"
+          element={<RegisterPage showToast={showToast} />}
+        />
+        <Route
+          path="/forgot-password"
+          element={<ForgotPasswordPage></ForgotPasswordPage>}
+        />
+        <Route path="/" element={<VideoPage />} />
+      </Routes>
+      {toastData && (
+        <Toast
+          message={toastData.message}
+          type={toastData.type}
+          onClose={handleCloseToast}
+        />
+      )}
+    </>
+  );
+};
 
 export default App;
