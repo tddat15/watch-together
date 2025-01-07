@@ -26,7 +26,7 @@ const Index: React.FC = () => {
 
       if (response.status === 201) {
         setIsPopupVisible(true);
-        setError('');
+        setSuccess(true);
 
         setTimeout(() => {
           setIsPopupVisible(false);
@@ -41,7 +41,13 @@ const Index: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('aa', isPopupVisible);
+    if (isPopupVisible) {
+      const timer = setTimeout(() => {
+        setIsPopupVisible(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
   }, [isPopupVisible]);
 
   return (
@@ -73,7 +79,7 @@ const Index: React.FC = () => {
 
       {isPopupVisible && (
         <div className="popup">
-          <p>Login successfully!</p>
+          {success ? <p>Login successfully!</p> : <p>Login Failed</p>}
         </div>
       )}
     </div>

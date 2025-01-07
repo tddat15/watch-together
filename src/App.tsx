@@ -32,10 +32,7 @@ const App: React.FC = () => {
           path="/register"
           element={<RegisterPage showToast={showToast} />}
         />
-        <Route
-          path="/forgot-password"
-          element={<ForgotPasswordPage></ForgotPasswordPage>}
-        />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/" element={<VideoPage />} />
       </Routes>
       {toastData && (
