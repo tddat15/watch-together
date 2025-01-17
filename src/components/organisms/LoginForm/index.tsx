@@ -28,9 +28,13 @@ const Index: React.FC = () => {
         setIsPopupVisible(true);
         setSuccess(true);
 
+        const { accessToken, refreshToken } = response.data;
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+
         setTimeout(() => {
           setIsPopupVisible(false);
-          navigate('/home');
+          navigate('/');
         }, 2000);
       }
     } catch (err) {
